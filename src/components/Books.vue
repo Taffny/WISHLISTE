@@ -52,7 +52,7 @@ function wish(book){
                     <v-card-actions>
                         <v-btn class="bg-primary" variant="elevated" @click="buy(book)" >Add to Cart</v-btn>
                         <v-btn class="bg-secondary"  variant="elevated" @click="view(book)">View Book</v-btn>
-                        <v-btn class="bg-secondary"  variant="elevated" to="/wish_list"">Add to wish list</v-btn>
+                        <v-btn class="bg-secondary"  variant="elevated" @click="wish(book)">Add to wish list</v-btn>
                     
                     </v-card-actions>
                 </v-card>
