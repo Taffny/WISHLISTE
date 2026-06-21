@@ -4,8 +4,8 @@ import { useWishStore } from '../stores/wish'
 import { storeToRefs } from 'pinia';
 
 
-const wishStore= useWishStore().wish
-const{wish} =storeToRefs(wishStore)
+const wishStore = useWishStore()
+const { wish } = storeToRefs(wishStore)
 
 </script>
 
