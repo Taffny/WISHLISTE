@@ -14,6 +14,17 @@ function checkout(item) {
     cartStore.updateCart(item)
     router.push('/cart')
 }
+function moveToCart(item, index) {
+    const cartItem = { ...item, quantity: item.quantity || 1 }
+    console.log('Moving to cart:', cartItem)
+    cartStore.updateCart(cartItem)
+    wish.value.splice(index, 1)
+    router.push('/cart')
+}
+
+function removeFromWish(index) {
+    wish.value.splice(index, 1)
+}
 
 
 
@@ -24,14 +35,14 @@ function checkout(item) {
     
     <v-container>
         <v-row>
-            <v-col md="12">
+            <v-col md="12" >
                 <div class="text-display-medium mb-12 mt-12 text-center">
                     Your Wish list
                 </div>
             </v-col>
         </v-row>
         <v-row>
-            <v-col md="12" v-for="item in wish" >
+            <v-col md="12" v-for="(item,index) in wish" :key="index" >
                 <v-card color="primary">
                     <v-row class="align-center" style="min-height:200px;">
                         <v-col md="3" class="d-flex flex-column justify-centre align-center">
