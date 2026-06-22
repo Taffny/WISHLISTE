@@ -17,19 +17,19 @@ const cartStore= useCartStore()
 const quantity=ref(1)
 
 function buy(book){
-    const cartItem= Object.assign({...book, quantity:
-        quantity.value})
-        console.log('Adding to cart:', cartItem)
+    // Create a new object with all book properties
+    const cartItem = Object.assign({}, book, { quantity: quantity.value })
+    console.log('Adding to cart:', cartItem)
     cartStore.updateCart(cartItem)
     router.push('/cart')
 }
 
 const wishStore=useWishStore()
 function wish(book){
-   
-    const wishItem= Object.assign({ ...book, quantity:
-            quantity.value})
-            console.loh('Image:', wishItem.image)
+    // Create a new object with all book properties
+    const wishItem = Object.assign({}, book, { quantity: quantity.value })
+    console.log('Adding to wish:', wishItem)
+    console.log('Image:', wishItem.image)
     wishStore.updateWish(wishItem)
     router.push('/wish_list')
 }

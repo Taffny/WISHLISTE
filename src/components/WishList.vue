@@ -5,29 +5,9 @@ import { useCartStore } from '../stores/cart'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia';
 
-const router = useRouter()
-const wishStore= useWishStore()
-const{wish} =storeToRefs(wishStore)
-const cartStore = useCartStore()
 
-function checkout(item) {
-    cartStore.updateCart(item)
-    router.push('/cart')
-}
-function moveToCart(item, index) {
-    const cartItem = { ...item, quantity: item.quantity || 1 }
-    console.log('Moving to cart:', cartItem)
-    cartStore.updateCart(cartItem)
-    wish.value.splice(index, 1)
-    router.push('/cart')
-}
-
-function removeFromWish(index) {
-    wish.value.splice(index, 1)
-}
-
-
-
+const wishStore = useWishStore()
+const { wish } = storeToRefs(wishStore)
 
 </script>
 
