@@ -179,7 +179,7 @@ export const useBooksStore = defineStore('books',  {
 
        return{
            books,
-           selectedBook:null
+           selectedBook
        }
    },
    actions:{
