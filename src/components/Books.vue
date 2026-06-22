@@ -17,16 +17,20 @@ const cartStore= useCartStore()
 const quantity=ref(1)
 
 function buy(book){
-    book.quantity=quantity.value
-    cartStore.updateCart(book)
+    // Create a new object with all book properties
+    const cartItem = Object.assign({}, book, { quantity: quantity.value })
+    console.log('Adding to cart:', cartItem)
+    cartStore.updateCart(cartItem)
     router.push('/cart')
 }
 
 const wishStore=useWishStore()
 function wish(book){
-    booksStore.updateSelectedBook(book)
-    book.quantity=quantity.value
-    wishStore.updateWish(book)
+    // Create a new object with all book properties
+    const wishItem = Object.assign({}, book, { quantity: quantity.value })
+    console.log('Adding to wish:', wishItem)
+    console.log('Image:', wishItem.image)
+    wishStore.updateWish(wishItem)
     router.push('/wish_list')
 }
 </script>
@@ -42,7 +46,7 @@ function wish(book){
             </v-col>
         </v-row>
         <v-row>
-            <v-col v-for="book in books">
+            <v-col v-for="book in books" :key="book.id">
                 <v-card class="h-100 d-flex flex-column" width=250>
                     <v-img :src="book.image" class="mt-3" height="200px" ></v-img>
                     <v-card-title>{{ book.name }}</v-card-title>
