@@ -12,6 +12,7 @@ const cartStore= useCartStore()
 const quantity=ref(1)
 
 function buy(book){
+    
     const cartItem = { ...book, quantity: quantity.value }
     cartStore.updateCart(cartItem)
     router.push('/cart')

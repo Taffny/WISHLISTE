@@ -140,3 +140,8 @@ const data={
 
 
 </template>
+
+//data modelling in programming
+//vue 3
+//reactivity, v-model, data model Object
+//give an example for wishlist- online booksStore
