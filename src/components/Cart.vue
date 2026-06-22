@@ -9,7 +9,20 @@ const{cart}=storeToRefs(cartStore) //store refs are for reactivity
 
 <template>
     
-    <v-container>
+    <v-container >
+        <div v-if="cart.length == 0" class="mt-12">
+            <v-card color="secondary">
+                <div class="text-display-small mb-12 mt-12 text-center">
+                    Your cart is empty
+                </div>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn to="/books" variant="elevated">Browse Books</v-btn>
+                    <v-spacer></v-spacer>
+                </v-card-actions>
+            </v-card>
+        </div>
+        <div v-else>
         <v-row>
             <v-col md="12">
                 <div class="text-display-medium mb-12 mt-12 text-center">
@@ -44,5 +57,6 @@ const{cart}=storeToRefs(cartStore) //store refs are for reactivity
                 </v-card>
             </v-col>
         </v-row>
+        </div>
     </v-container>
 </template>

@@ -15,6 +15,9 @@ function checkout(item) {
     router.push('/cart')
 }
 
+
+
+
 </script>
 
 <template>

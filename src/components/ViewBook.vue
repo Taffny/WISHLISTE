@@ -12,8 +12,8 @@ const cartStore= useCartStore()
 const quantity=ref(1)
 
 function buy(book){
-    book.quantity=quantity.value
-    cartStore.updateCart(book)
+    const cartItem = { ...book, quantity: quantity.value }
+    cartStore.updateCart(cartItem)
     router.push('/cart')
 }
 
@@ -24,7 +24,7 @@ function buy(book){
     <v-row>
             <v-col md="6">
             <v-card>
-                <v-img class="align-end text-white" height=620 :src="book.image"> </v-img>
+                <v-img class="align-end text-white" height=620 > </v-img>
             </v-card>
             </v-col>
             <v-col md="6">
@@ -47,13 +47,13 @@ function buy(book){
                                                  
                                 <v-col md="4">Quantity</v-col>
                                 <v-col md="6">
-                                    <v-number-input v-model="quantity "control-variant="split" density="compact" :min="1" :max="10" > </v-number-input>A book helping nurture black womens mindset </v-col>
+                                    <v-number-input v-model="quantity" control-variant="split" density="compact" :min="1" :max="10" > </v-number-input>A book helping nurture black womens mindset </v-col>
                             </v-row>
                         </v-card-text>
                     </v-card-item>
                     <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-card-text>Total:0</v-card-text>
+                            <v-card-text>{{ book.price*quantity }}</v-card-text>
                         <v-btn elevation="4" variant="elevated" @click="buy(book)"> Add to Cart </v-btn>
                     </v-card-actions>
                 </v-card>
