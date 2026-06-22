@@ -1,6 +1,9 @@
 <script setup>
+import { storeToRefs } from 'pinia';
 import { useCartStore } from '../stores/cart'
-const cart= useCartStore().cart
+const cartStore= useCartStore()
+const{cart}=storeToRefs(cartStore) //store refs are for reactivity
+
 
 </script>
 
@@ -15,7 +18,7 @@ const cart= useCartStore().cart
             </v-col>
         </v-row>
         <v-row>
-            <v-col md="12" v-for="item in cart">
+            <v-col md="12"  v-for="(item, index) in cart" :key="index">
                 <v-card color="primary">
                     <v-row>
                         <v-col md="4" class="text-center">
@@ -28,6 +31,8 @@ const cart= useCartStore().cart
                                     <v-card-title class="mb-4">{{ item.name }}</v-card-title>
                                     <v-card-subtitle>Ksh {{ item.price }}</v-card-subtitle>
                                     <v-card-subtitle>Quantity {{ item.quantity }}</v-card-subtitle>
+                                    
+                                    <v-number-input v-model="item.quantity "control-variant="split" density="compact" :min="1" :max="10" > </v-number-input>
                                     <v-card-text>Total:{{ item.price * item.quantity}} </v-card-text>
                                 </v-card-item>
                                 <v-card-actions>
