@@ -18,7 +18,7 @@ const quantity=ref(1)
 
 function buy(book){
     // Create a new object with all book properties
-    const cartItem = Object.assign({}, book, { quantity: quantity.value })
+    const cartItem = Object.assign({},book, { quantity: quantity.value })
     console.log('Adding to cart:', cartItem)
     cartStore.updateCart(cartItem)
     router.push('/cart')
@@ -29,7 +29,7 @@ function wish(book){
     // Create a new object with all book properties
     const wishItem = Object.assign({}, book, { quantity: quantity.value })
     console.log('Adding to wish:', wishItem)
-    console.log('Image:', wishItem.image)
+    console.log('image:', wishItem.image)
     wishStore.updateWish(wishItem)
     router.push('/wish_list')
 }
@@ -47,16 +47,23 @@ function wish(book){
         </v-row>
         <v-row>
             <v-col v-for="book in books" :key="book.id">
-                <v-card class="h-100 d-flex flex-column" width=250>
+                <v-card class="h-100 d-flex flex-column" width=380>
                     <v-img :src="book.image" class="mt-3" height="200px" ></v-img>
-                    <v-card-title>{{ book.name }}</v-card-title>
+                    <v-card-title class="text-wrap">{{ book.name }}</v-card-title>
                     <v-card-subtitle>{{ book.price }}</v-card-subtitle>
                     <v-card-text>{{ book.description }}</v-card-text>
                     <v-card-text>By:{{ book.author }}</v-card-text>
-                    <v-card-actions>
-                        <v-btn class="bg-primary" variant="elevated" @click="buy(book)" >Add to Cart</v-btn>
-                        <v-btn class="bg-secondary"  variant="elevated" @click="view(book)">View Book</v-btn>
-                        <v-btn class="bg-secondary"  variant="elevated" @click="wish(book)">Add to wish list</v-btn>
+                    <v-card-actions class="justify-space-between">
+
+                        <v-btn class="bg-primary" variant="elevated" @click="buy(book)" color="success" size="large" rounded="pill" elevation="4" 
+    prepend-icon="mdi-cart">Add to Cart</v-btn>
+
+                        <v-btn class="bg-secondary"  variant="elevated" @click="view(book)" color="info" size="large" rounded="pill" elevation="4" 
+    prepend-icon="mdi-book-open-page-variant">View Book</v-btn>
+
+                        <v-btn color="secondary" size="medium" rounded="pill" elevation="4" prepend-icon="mdi-heart" @click="wish(book)"
+  >
+    </v-btn>
                     
                     </v-card-actions>
                 </v-card>

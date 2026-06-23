@@ -1,4 +1,24 @@
 <script setup>
+import {useAuth}  from '../services/auth'
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const { logout } = useAuth()
+const isAuthenticated = localStorage.getItem('isAuthenticated')
+const user = JSON.parse(localStorage.getItem('user'))
+
+let letter = ''
+if(user){
+    letter = user.firstName[0]
+}
+
+function logOut(){
+    logout()
+    router.push('/').then(() => {
+        router.go(0)
+    });
+}
+
 </script>
 
 <template>
@@ -14,6 +34,18 @@
         <v-btn to="/cart">Cart</v-btn>
         <v-btn to="/library">Library</v-btn>
         <v-btn to="/wish_list">Wish List</v-btn>
-        <v-btn to="/profile">profile</v-btn>
+        <v-btn icon="mdi-account" v-if="isAuthenticated" variant="tonal">{{letter}}
+            <v-menu activator="parent">
+                <v-list>
+                    <v-list-item>
+                        <v-btn color="primary" to="/profile">Profile</v-btn>                        
+                    </v-list-item>
+                    <v-list-item>
+                        <v-btn color="primary" @click="()=> { logOut();}">Logout</v-btn>                        
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+        </v-btn>
+        <v-btn to="/login" v-else>Login</v-btn>
     </v-app-bar>
 </template>

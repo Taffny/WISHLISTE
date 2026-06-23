@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '../stores/cart'
-import { storeToRefs } from 'pinia'
+
 
 const cartStore = useCartStore()
 const { cart } = storeToRefs(cartStore)

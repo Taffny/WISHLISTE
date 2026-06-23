@@ -12,11 +12,11 @@ const cartStore= useCartStore()
 const quantity=ref(1)
 
 function buy(book){
-    
-    const cartItem = { ...book, quantity: quantity.value }
+    const cartItem = ({},  book, {quantity: quantity.value} )
     cartStore.updateCart(cartItem)
     router.push('/cart')
 }
+
 
 </script>
 
@@ -25,7 +25,7 @@ function buy(book){
     <v-row>
             <v-col md="6">
             <v-card>
-                <v-img class="align-end text-white" height=620 > </v-img>
+                <v-img class="align-end text-white" height=620 :src="book.image"> </v-img>
             </v-card>
             </v-col>
             <v-col md="6">
