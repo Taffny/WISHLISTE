@@ -32,7 +32,16 @@ function wish(book){
     console.log('image:', wishItem.image)
     wishStore.updateWish(wishItem)
     router.push('/wish_list')
+    
 }
+//for message snackbar
+
+
+
+
+
+
+
 </script>
 
 <template>
@@ -40,19 +49,28 @@ function wish(book){
     <v-container max-width="100%">
         <v-row>
             <v-col>
-                <div class="text-display-medium mb-12 mt-12 text-center" >
-                    Browse Books
-                </div>
+                
+                <div class="text-h4 font-weight-bold text-center text-primary mb-6 text-white">
+  <v-icon color="primary" class="mr-2">mdi-book-open-page-variant</v-icon>
+  Browse Books
+</div>
+
+<v-divider class="my-4"></v-divider>
+
             </v-col>
         </v-row>
         <v-row>
             <v-col v-for="book in books" :key="book.id">
-                <v-card class="h-100 d-flex flex-column" width=380>
+                <v-card class="h-100 d-flex flex-column" width=380 color="#37474F" rounded="lg">
                     <v-img :src="book.image" class="mt-3" height="200px" ></v-img>
-                    <v-card-title class="text-wrap">{{ book.name }}</v-card-title>
-                    <v-card-subtitle>{{ book.price }}</v-card-subtitle>
-                    <v-card-text>{{ book.description }}</v-card-text>
-                    <v-card-text>By:{{ book.author }}</v-card-text>
+                    <v-card-title class="text-wrap text-h5 font-weight-bold text-center text-uppercase">{{ book.name }}</v-card-title>
+                    <v-card-subtitle class="text-subtitle1 text-success text-center" >
+                        <v-icon color="success" class="mr-1" >mdi-cash </v-icon>
+                        {{ book.price }}
+                    </v-card-subtitle>
+                    <v-divider class="my-2"></v-divider>
+                    <v-card-text class="text-body-1 text-center font-weight-black" >{{ book.description }}</v-card-text>
+                    <v-card-text class="text-caption text-grey text-center font-weight-regular" >By:{{ book.author }}</v-card-text>
                     <v-card-actions class="justify-space-between">
 
                         <v-btn class="bg-primary" variant="elevated" @click="buy(book)" color="success" size="large" rounded="pill" elevation="4" 
@@ -64,6 +82,7 @@ function wish(book){
                         <v-btn color="secondary" size="medium" rounded="pill" elevation="4" prepend-icon="mdi-heart" @click="wish(book)"
   >
     </v-btn>
+    
                     
                     </v-card-actions>
                 </v-card>

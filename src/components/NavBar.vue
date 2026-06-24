@@ -1,10 +1,11 @@
-<script setup>
-import {useAuth}  from '../services/auth'
+<script>
+import {useAuth}  from '@/services/auth'
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const { logout } = useAuth()
 const isAuthenticated = localStorage.getItem('isAuthenticated')
+const isAdmin = localStorage.getItem('isAdmin')
 const user = JSON.parse(localStorage.getItem('user'))
 
 let letter = ''
@@ -25,12 +26,12 @@ function logOut(){
     <v-app-bar color="primary">
        <v-app-bar-title>
             <router-link to="/">
-                <v-img src="/FullLogo.jpg" width="10%" height="12%"></v-img>
+                <v-img src="/mainLogo.jpg" width="10%" height="12%"></v-img>
             </router-link>
        </v-app-bar-title>
         <v-btn to="/">Home</v-btn>
         <v-btn to="/books">Books</v-btn>
-        <v-btn to="/admin">Admin</v-btn>
+        <v-btn to="/admin" v-if="isAdmin">Admin</v-btn>
         <v-btn to="/cart">Cart</v-btn>
         <v-btn to="/library">Library</v-btn>
         <v-btn to="/wish_list">Wish List</v-btn>
@@ -41,11 +42,11 @@ function logOut(){
                         <v-btn color="primary" to="/profile">Profile</v-btn>                        
                     </v-list-item>
                     <v-list-item>
-                        <v-btn color="primary" @click="()=> { logOut();}">Logout</v-btn>                        
+                        <v-btn color="primary" @click="()=> { logOut()}">Logout</v-btn>                        
                     </v-list-item>
                 </v-list>
             </v-menu>
         </v-btn>
-        <v-btn to="/login" v-else>Login</v-btn>
+        <v-btn to="/login" variant="text" v-else >Login</v-btn>
     </v-app-bar>
 </template>

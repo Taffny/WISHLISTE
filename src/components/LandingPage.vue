@@ -8,9 +8,9 @@
             <v-col>
                 <v-carousel cycle>
                     <v-carousel-item src="/carousel1.jpg" cover></v-carousel-item>
-                    <v-carousel-item src="/carousel3.jpg" cover></v-carousel-item>
-                    <v-carousel-item src="/carousel2.jpg" cover></v-carousel-item>
-                    <v-carousel-item src="/carousel4.jpg" cover></v-carousel-item>
+                    <v-carousel-item src="/carousel7.jpg" cover></v-carousel-item>
+                    <v-carousel-item src="/carousel5.jpg" cover></v-carousel-item>
+                    <v-carousel-item src="/carousel6.jpg" cover></v-carousel-item>
                 </v-carousel>
             </v-col>
         </v-row>
@@ -47,7 +47,7 @@
                     <v-img src="/book2.jpeg" cover></v-img>
                     <v-card-title>THE CHEF</v-card-title>
                     <v-card-subtitle>2500</v-card-subtitle>
-                    <v-btn to="/cart" color="secondary"  rounded="pill" elevation="4">Add to Cart</v-btn>
+                    <v-btn to="/cart" color="secondary"  rounded="pill" prepend-icon="mdi-cart" elevation="4">Add to Cart</v-btn>
                 </v-card>
             </v-col>
             <v-col md="3" sm="6" xs="12">
@@ -56,7 +56,7 @@
                     <v-card-title>DIARY OF A WIMPY KID</v-card-title>
                     
                     <v-card-subtitle>2399</v-card-subtitle>
-                    <v-btn to="/cart" class="bg-primary"  rounded="pill" elevation="4">Add to Cart</v-btn>
+                    <v-btn to="/cart" color="secondary"  rounded="pill" elevation="4" prepend-icon="mdi-cart">Add to Cart</v-btn>
                 </v-card>
             </v-col>
             <v-col md="3" sm="6" xs="12">
@@ -64,7 +64,7 @@
                     <v-img src="/book4.jpeg" cover></v-img>
                     <v-card-title>HEART AND HUSTLE</v-card-title>
                     <v-card-subtitle>1899</v-card-subtitle>
-                    <v-btn to="/cart" class="bg-primary" color="primary" rounded="pill" elevation="4">Add to Cart</v-btn>
+                    <v-btn to="/cart" color="secondary" rounded="pill" elevation="4" prepend-icon="mdi-cart">Add to Cart</v-btn>
                 </v-card>
             </v-col>
 
@@ -80,7 +80,7 @@
         <v-col>
             <div align="center">
                 <router-link to="/">
-                    <v-img src="/FullLogo.jpg" width="50%" height="50%" ></v-img>
+                    <v-img src="/mainLogo.jpg" width="50%" height="50%" ></v-img>
                 </router-link>
 
                 <p> Copyright Readify Online Book Store &copy; 2026</p>
