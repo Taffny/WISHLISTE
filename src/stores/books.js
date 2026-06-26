@@ -107,8 +107,8 @@ export const useBooksStore = defineStore('books',  {
               price:2700,
               description:"Jojo Moyes’ Me Before You is a romantic contemporary fiction novel with strong elements of drama and emotional romance.",
               author:"Jojo Moyes",
-              long_description:"Romance",
-              genre:"Me Before You tells the story of Louisa Clark, a quirky, small-town young woman who takes a job caring for Will Traynor, a wealthy, adventurous man left paralyzed after an accident. What begins as a practical arrangement slowly evolves into a deep, transformative relationship. Louisa brings warmth, humor, and hope into Will’s life, while Will challenges Louisa to expand her horizons and live boldly.",
+              long_description:"Me Before You tells the story of Louisa Clark, a quirky, small-town young woman who takes a job caring for Will Traynor, a wealthy, adventurous man left paralyzed after an accident. What begins as a practical arrangement slowly evolves into a deep, transformative relationship. Louisa brings warmth, humor, and hope into Will’s life, while Will challenges Louisa to expand her horizons and live boldly.",
+              genre:"Romance",
               rating:3,
       
           },
