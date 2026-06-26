@@ -27,6 +27,7 @@ const allOrders = Object.values(orders).map(order => {
 });
 
 const tab = ref(null)
+const refreshKey=ref(0);
 const showAddBookDialog = ref(false)
 const showEditBookDialog = ref(false)
 const showAddUserDialog = ref(false)
@@ -52,7 +53,7 @@ const rating=ref(null)
 function addBook(){
     const bookData = {
         id: bookId.value,
-        bookName: bookName.value,
+        name: bookName.value,
         price: price.value,
         description: description.value,
         long_description: long_description.value,
@@ -62,11 +63,9 @@ function addBook(){
         rating: rating.value
         
     }
-    //to do: update Books in the store
-    const updateBook ={
-        ...books,
-        12:bookData
-    }
+    //update Books in the store
+   booksStore.addBook(bookData)
+   close()
 }
 
 //edit book
@@ -87,7 +86,7 @@ function editBook(book){
 function updateBook(){
      const bookData = {
         id: bookId.value,
-        bookName: bookName.value,
+        name: bookName.value,
         price: price.value,
         description: description.value,
         long_description: long_description.value,
@@ -98,7 +97,15 @@ function updateBook(){
         
     }
 //to do update book
+    booksStore.edit(bookId.value, bookData) //best to use different names
     close()
+    refreshKey.value +=1 //auto refreshes the page
+}
+//delete
+function destroyBook(id){
+booksStore.deleteBook(id);
+refreshKey.value+=1;
+
 }
 
 //user models
@@ -111,7 +118,7 @@ const phone= ref(null)
 const location= ref(null)
 
 //add user
-function adduser(){
+function addUser(){
     const data={
     userId:userId.value,
     firstName:firstName.value,
@@ -123,7 +130,8 @@ function adduser(){
     password:"taffychep123",
     role:2,
 }
-//to do: add user
+//add user
+usersStore.addUser(data)
 close()
 }
 
@@ -153,10 +161,17 @@ function updateUser(){
     password:"taffychep123",
     role:2,
 }
-//to do: update user
-
+//edit user
+usersStore.editUser(userId.value,data)
+refreshKey.value +=1
 close()
 } 
+
+//delete user
+function destroyUser(id){
+    usersStore.deleteUser(id);
+    refreshKey.Value +=1
+}
 
 
 
@@ -193,7 +208,7 @@ function close(){
 </script>
 
 <template>
-    <v-container class="text-center bg-secondary mt-12">
+    <v-container class="text-center bg-secondary mt-12" :key="refreshKey">
         <v-card>
             <v-tabs v-model="tab" align-tabs="center" color="primary" >
                 <v-tab :value="1">Books</v-tab>
@@ -241,7 +256,7 @@ function close(){
                                         <td>{{ item.genre }}</td>
                                         <td> <v-btn color="warning" size="small"><v-icon icon="mdi-account-check" ></v-icon> View</v-btn> </td>
                                         <td> <v-btn color="primary" size="small" @click="editBook(item)"><v-icon icon="mdi-pencil" ></v-icon> Edit </v-btn> </td>
-                                        <td> <v-btn color="error" size="small"><v-icon icon="mdi-delete" ></v-icon> Delete</v-btn> </td>
+                                        <td> <v-btn color="error" size="small" @click="destroyBook(item.id)"><v-icon icon="mdi-delete" ></v-icon> Delete</v-btn> </td>
                                     </tr>
                                 </tbody>
                             </v-table>
@@ -296,7 +311,7 @@ function close(){
                                         <td>{{ item.address }}</td>
                                         <td> <v-btn color="warning" size="small"><v-icon icon="mdi-account-check" ></v-icon> View</v-btn> </td>
                                         <td> <v-btn color="primary" size="small" @click="editUser(item)"><v-icon icon="mdi-pencil" ></v-icon> Edit </v-btn> </td>
-                                        <td> <v-btn color="error" size="small"><v-icon icon="mdi-delete" ></v-icon> Delete</v-btn> </td>
+                                        <td> <v-btn color="error" size="small" @click="destroyUser(item.id)"><v-icon icon="mdi-delete" ></v-icon> Delete</v-btn> </td>
                                     </tr>
                                 </tbody>
                             </v-table>
@@ -571,5 +586,9 @@ function close(){
         </v-form>
     </v-dialog>
 </template>
+
+//read on document object module
+//virtual dom
+//hot module replacement
 
 
