@@ -1,15 +1,28 @@
 <script setup>
-
+import {ref} from 'vue'
 import { useWishStore } from '@/stores/wish'
 import { useCartStore } from '../stores/cart'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia';
+import { useBooksStore } from '../stores/books'
+
+const booksStore = useBooksStore()
+const books= booksStore.books
+const cartStore= useCartStore()
+const quantity=ref(1)
 
 
 const wishStore = useWishStore()
 const  {wish}  = storeToRefs(wishStore)
+const router= useRouter()
 
-
+function buy(book){
+    // Create a new object with all book properties
+    const cartItem = Object.assign({},book, { quantity: quantity.value })
+    console.log('Adding to cart:', cartItem)
+    cartStore.updateCart(cartItem)
+    router.push('/cart')
+}
 
 
 
@@ -55,7 +68,7 @@ const  {wish}  = storeToRefs(wishStore)
                                 </div>
                             </v-card-item>
                             <v-card-actions class="justify-space-between" mt-auto>
-                                <v-btn elevation="4" variant="elevated" color="success" @click=buy(book) rounded="pill" prepend-icon="mdi-cart"> Purchase Item </v-btn>
+                                <v-btn elevation="4" variant="elevated" color="success"  @click="buy(book)" rounded="pill" prepend-icon="mdi-cart"> Purchase Item </v-btn>
                                 <v-btn elevation="4" variant="elevated" color="error" rounded="pill" prepend-icon="mdi-delete"> Remove from wish list </v-btn>
                             </v-card-actions>
 

@@ -4,17 +4,20 @@ import { useBooksStore } from '../stores/books'
 import { useCartStore } from '@/stores/cart'
 import { useRouter } from 'vue-router'
 import { useWishStore } from '@/stores/wish'
+import { storeToRefs } from 'pinia';
 
 const router = useRouter()
 const booksStore = useBooksStore()
 const books= booksStore.books
+const wishStore=useWishStore()
+const cartStore= useCartStore()
+const quantity=ref(1)
 
 function view(book){
    booksStore.updateSelectedBook(book) // keep track of the selected item
     router.push('/view_book')
 }
-const cartStore= useCartStore()
-const quantity=ref(1)
+
 
 function buy(book){
     // Create a new object with all book properties
@@ -24,7 +27,7 @@ function buy(book){
     router.push('/cart')
 }
 
-const wishStore=useWishStore()
+
 function wish(book){
     // Create a new object with all book properties
     const wishItem = Object.assign({}, book, { quantity: quantity.value })
@@ -34,18 +37,9 @@ function wish(book){
     router.push('/wish_list')
     
 }
-//for message snackbar
-
-
-
-
-
-
-
 </script>
 
 <template>
-    
     <v-container max-width="100%">
         <v-row>
             <v-col>
